@@ -1,0 +1,20 @@
+<section>
+  <h1>Media</h1>
+
+  <div class="row">
+    <ul>
+      <li ng-repeat="media in catalogMedia" class="col-sm-4" style="list-style: none">
+        <div class="card">
+          <img class="card-img-top" src="http://placehold.it/600x280" style="width: 100%" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">{{media.title}}</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text"><small class="text-muted">{{media.categories}}</small></p>
+            <a href="#" class="btn btn-info">Details</a>
+            <a href="#" class="btn btn-success">Buy</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
