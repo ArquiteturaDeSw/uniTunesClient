@@ -4,6 +4,7 @@
 angular.module('uniTunesApp', [
   'ngRoute',
   'uniTunesApp.MediaCatalog',
+  'uniTunesApp.User',
   'myApp.view2',
   'myApp.version'
 ]).
