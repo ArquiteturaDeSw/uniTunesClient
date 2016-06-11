@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('uniTunesApp', [
   'ngRoute',
+  'pathgather.popeye',
   'uniTunesApp.MediaCatalog',
   'uniTunesApp.User',
   'myApp.view2',

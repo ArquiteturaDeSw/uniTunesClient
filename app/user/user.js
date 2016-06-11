@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('uniTunesApp.User', ['ngRoute'])
+angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/cadastro', {
@@ -14,18 +14,28 @@ angular.module('uniTunesApp.User', ['ngRoute'])
   });
 }])
 
-.controller('UserCtrl', function($scope, $q) {
+.controller('UserCtrl', function($scope, $q, Popeye) {
 
 	$scope.newUserForm = {}
 
 	$scope.submitNewUserForm = function(){
-		console.log(JSON.stringify($scope.newUserForm))
 		validateNewUserData($scope.newUserForm)
+	}
+
+
+	// *************************************************************
+
+
+	var showModal = function(template){
+		var modal = Popeye.openModal({
+	      templateUrl: template,
+	    });
 	}
   
 	var validateNewUserData = function(newUserForm) {
 		if(newUserForm.password != newUserForm.passwordConfirm){
-			console.log('Invalid password confirmation.')
+			console.log('[WARN] Invalid password confirmation!')
+			showModal('user/modal-password-confirmation-failed.html')
 			return $q.reject()
 		}
 
