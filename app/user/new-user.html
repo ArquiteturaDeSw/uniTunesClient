@@ -1,25 +1,25 @@
 <section>
   <h1>Inscreva-se</h1>
-  <form role="form">
+  <form id="newUserForm" role="form" ng-submit="submitNewUserForm()">
     <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input type="text" class="form-control" id="nome" required>
+      <label for="firstname">Nome:</label>
+      <input type="text" class="form-control" id="firstname" ng-required="true" ng-model="newUserForm.firstname">
     </div>
     <div class="form-group">
-      <label for="sobrenome">Sobrenome:</label>
-      <input type="text" class="form-control" id="sobrenome" required>
+      <label for="lastname">Sobrenome:</label>
+      <input type="text" class="form-control" id="lastname" ng-required="true" ng-model="newUserForm.lastname">
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" required>
+      <input type="email" class="form-control" id="email" ng-required="true" ng-model="newUserForm.email" >
     </div>
     <div class="form-group">
-      <label for="senha">Senha:</label>
-        <input type="password" class="form-control" id="senha" required>
+      <label for="password">Senha:</label>
+        <input type="password" class="form-control" id="password" ng-required="true" ng-model="newUserForm.password" minlength="6" maxlength="30">
     </div>
     <div class="form-group">
-      <label for="confirmacao-senha">Confirmação de senha:</label>
-        <input type="password" class="form-control" id="confirmacao-senha" required>
+      <label for="passwordConfirm">Confirmação de senha:</label>
+        <input type="password" class="form-control" id="passwordConfirm" required ng-model="newUserForm.passwordConfirm">
     </div>
     <button type="submit" class="btn btn-success pull-right">Confirmar</button>
   </form>

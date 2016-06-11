@@ -17,13 +17,19 @@ angular.module('uniTunesApp.User', ['ngRoute'])
 .controller('UserCtrl', function($scope, $q) {
 
 	$scope.newUserForm = {}
+
+	$scope.submitNewUserForm = function(){
+		console.log(JSON.stringify($scope.newUserForm))
+		validateNewUserData($scope.newUserForm)
+	}
   
 	var validateNewUserData = function(newUserForm) {
-		if(newUserForm.password && newUserForm.password !== newUserForm.passwordConfirm){
-			return $q.reject();
+		if(newUserForm.password != newUserForm.passwordConfirm){
+			console.log('Invalid password confirmation.')
+			return $q.reject()
 		}
 
-		return $q.resolve();
+		return $q.resolve()
 	}
 
 });
