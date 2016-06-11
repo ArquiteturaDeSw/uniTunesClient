@@ -14,6 +14,16 @@ angular.module('uniTunesApp.User', ['ngRoute'])
   });
 }])
 
-.controller('UserCtrl', function($scope) {
+.controller('UserCtrl', function($scope, $q) {
+
+	$scope.newUserForm = {}
   
+	var validateNewUserData = function(newUserForm) {
+		if(newUserForm.password && newUserForm.password !== newUserForm.passwordConfirm){
+			return $q.reject();
+		}
+
+		return $q.resolve();
+	}
+
 });
