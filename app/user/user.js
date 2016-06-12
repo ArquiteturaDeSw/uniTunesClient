@@ -19,28 +19,11 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
   });
 }])
 
-.controller('UserCtrl', function($scope, $q, $location, Popeye, UserService) {
+.controller('UserCtrl', function($scope, $q, $location, $routeParams, Popeye, UserService) {
 
 	$scope.newUserForm = {}
 
-	$scope.currentUser = {
-		"name":"Maria",
-		"lastname":"Silva",
-		"email":"maria.silva@gmail.com",
-		"credit":"39",
-		"products": [ {
-			"title":"Padrões de Projeto",
-			"price":"20",
-			"category":"Livro",
-			"soldAmount":"5"
-		},
-		{
-			"title":"Bad smells",
-			"price":"5",
-			"category":"Vídeo",
-			"soldAmount":"18"
-		}]
-	}
+	$scope.currentUser = {}
 
 	$scope.usersList = []
 	$scope.usersFilter = {}
@@ -75,6 +58,13 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 		if($scope.currentPage){
 			$scope.currentPage --
 		}
+	}
+
+	$scope.getUser = function(){
+		var id = $routeParams.id;
+		UserService.getUser(id).then(function(user){
+			$scope.currentUser = user;
+		})
 	}
 
 	var filterUsers = function(usersList){
@@ -171,6 +161,30 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
     	]
     	return $q.resolve(list);
     }
+
+    var getUser = function(id){
+    	//TODO API
+    	var user = {
+			"name":"Maria",
+			"lastname":"Silva",
+			"email":"maria.silva@gmail.com",
+			"credit":"39",
+			"status":"Ativo",
+			"products": [ {
+				"title":"Padrões de Projeto",
+				"price":"20",
+				"category":"Livro",
+				"soldAmount":"5"
+			},
+			{
+				"title":"Bad smells",
+				"price":"5",
+				"category":"Vídeo",
+				"soldAmount":"18"
+			}]
+		}
+		return $q.resolve(user)
+    }
       
     return {
         saveNewUser: function(newUserForm) {
@@ -178,6 +192,9 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
         },
         listUsers: function(){
         	return listUsers();
+        },
+        getUser: function(id){
+        	return getUser(id)
         }
 
     }

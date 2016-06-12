@@ -1,8 +1,10 @@
-<section>
+<section ng-init="getUser()">
   <div class="row">
 
     <div class="col-md-3">
       <img src="user/img/user-default.jpg" class="img-responsive img-thumbnail">
+      <button class="btn btn-block btn-danger" ng-show="currentUser.status.includes('Ativo')">Inativar conta</button>
+      <button class="btn btn-block btn-success" ng-show="!currentUser.status.includes('Ativo')">Ativar conta</button>
     </div>
 
     <div class="col-md-9">
