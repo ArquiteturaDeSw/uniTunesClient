@@ -1,0 +1,22 @@
+<section ng-init="listUsers()">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-default">
+        <tr>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Email</th>
+          <th>Situação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in usersList">
+          <td>{{user.name}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

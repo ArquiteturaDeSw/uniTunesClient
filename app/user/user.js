@@ -8,8 +8,8 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
     controller: 'UserCtrl'
   })
 
-  .when('/usuario/perfil', {
-      templateUrl: 'user/user.html',
+  .when('/usuario', {
+      templateUrl: 'user/user-list.html',
       controller: 'UserCtrl'
   });
 }])
@@ -17,12 +17,21 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 .controller('UserCtrl', function($scope, $q, $location, Popeye, UserService) {
 
 	$scope.newUserForm = {}
+	$scope.usersList = [];
 
 	$scope.submitNewUserForm = function(){
-		validateNewUserData($scope.newUserForm).then(registerUser).then(redirectToCatalog)
+		validateNewUserData($scope.newUserForm)
+			.then(registerUser)
+			.then(redirectToCatalog)
 	}
 
-	// *************************************************************
+	$scope.listUsers = function(){
+		UserService.listUsers().then(function(list){
+			$scope.usersList = list;
+		})
+
+		console.log(JSON.stringify($scope.usersList))
+	}
 
 	var showModal = function(template){
 		var modal = Popeye.openModal({
@@ -56,10 +65,42 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
         console.log('[INFO] Usuário salvo: ' + JSON.stringify(newUserForm))
         return $q.resolve()
     }
+
+    var listUsers = function(){
+    	//TODO: API
+    	var list = [
+    		{
+    			"name":"Maria",
+    			"lastname":"Silva",
+    			"status":"Ativo",
+    			"email":"maria.silva@gmail.com",
+    			"id":"1"
+    		},
+    		{
+    			"name":"João",
+    			"lastname":"Marques",
+    			"status":"Ativo",
+    			"email":"joao.marques@gmail.com",
+    			"id":"2"
+    		},
+    		{
+    			"name":"José",
+    			"lastname":"Silveira",
+    			"status":"Inativo",
+    			"email":"jose.silveira@gmail.com",
+    			"id":"3"
+    		}
+    	]
+    	return $q.resolve(list);
+    }
       
     return {
         saveNewUser: function(newUserForm) {
         	return saveNewUser(newUserForm);
+        },
+        listUsers: function(){
+        	return listUsers();
         }
+
     }
 }]);
