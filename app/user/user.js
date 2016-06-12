@@ -17,7 +17,8 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 .controller('UserCtrl', function($scope, $q, $location, Popeye, UserService) {
 
 	$scope.newUserForm = {}
-	$scope.usersList = [];
+	$scope.usersList = []
+	$scope.usersFilter = {}
 
 	$scope.submitNewUserForm = function(){
 		validateNewUserData($scope.newUserForm)
@@ -26,11 +27,36 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 	}
 
 	$scope.listUsers = function(){
-		UserService.listUsers().then(function(list){
-			$scope.usersList = list;
-		})
+		UserService.listUsers()
+			.then(filterUsers)
+			.then(function(list){
+				console.log(JSON.stringify(list))
+				$scope.usersList = list
+			})
+	}
 
-		console.log(JSON.stringify($scope.usersList))
+	$scope.clearFilter = function(){
+		$scope.usersFilter = {}
+	}
+
+	var filterUsers = function(usersList){
+		var list = []
+
+		$scope.usersFilter.name = $scope.usersFilter.name ? $scope.usersFilter.name.toLowerCase() : ''
+		$scope.usersFilter.status = $scope.usersFilter.status ? $scope.usersFilter.status.toLowerCase() : ''
+		$scope.usersFilter.email = $scope.usersFilter.email ? $scope.usersFilter.email.toLowerCase() : ''
+		$scope.usersFilter.lastname = $scope.usersFilter.lastname ? $scope.usersFilter.lastname.toLowerCase() : ''
+
+		usersList.forEach(function(user){
+			var test = user.name.toLowerCase().includes($scope.usersFilter.name)
+						&& user.lastname.toLowerCase().includes($scope.usersFilter.lastname)
+						&& user.status.toLowerCase().includes($scope.usersFilter.status)
+						&& user.email.toLowerCase().includes($scope.usersFilter.email)
+			if(test){
+				list.push(user)
+			}
+		})
+		return $q.resolve(list)
 	}
 
 	var showModal = function(template){
