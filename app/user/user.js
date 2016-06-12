@@ -67,6 +67,10 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 		})
 	}
 
+	$scope.disableUser = function(){
+		return showModal('user/disabling-user-modal.html')
+	}
+
 	var filterUsers = function(usersList){
 		var list = []
 
@@ -88,7 +92,7 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 	}
 
 	var showModal = function(template){
-		var modal = Popeye.openModal({
+		return Popeye.openModal({
 	      templateUrl: template,
 	    });
 	}
@@ -165,6 +169,7 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
     var getUser = function(id){
     	//TODO API
     	var user = {
+    		"id":"1",
 			"name":"Maria",
 			"lastname":"Silva",
 			"email":"maria.silva@gmail.com",

@@ -1,0 +1,21 @@
+<div class="popeye-modal-container">
+  <div class="popeye-modal">
+    <a class="popeye-close-modal" href ng-click="$close()"></a>
+    <form>
+    	<h2>Desativar conta de usuário</h2>
+    	<div class="form-group">
+		  <label for="reason">Informe o motivo para desativar este usuário:</label>
+		  <textarea class="form-control" rows="5" id="reason"></textarea>
+		</div>
+
+		<div class="form-group">
+		  <label for="password">Informe a sua senha:</label>
+		  <input type="password" class="form-control" id="password"/>
+		</div>
+    </form>
+    <div class="button-group">
+	    <button type="button" class="btn btn-default pull-right" ng-click="$close()">Cancelar</button>
+	    <button type="button" class="btn btn-default pull-right" ng-click="$close()">Confirmar</button>
+	</div>
+  </div>
+</div>
