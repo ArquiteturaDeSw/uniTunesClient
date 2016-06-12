@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="user in usersList">
+        <tr ng-repeat="user in usersList | startFrom:(currentPage)*limitPagination | limitTo:limitPagination">
           <td>{{user.name}}</td>
           <td>{{user.lastname}}</td>
           <td>{{user.email}}</td>
@@ -61,5 +61,13 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="text-center">
+    <ul class="pagination pagination-sm">
+      <li><a href="" ng-click="previousPage()"><<</a></li>
+      <li><a href="">{{currentPage + 1}}</a></li>
+      <li><a href="" ng-click="nextPage()">>></a></li>
+    </ul>
   </div>
 </section>

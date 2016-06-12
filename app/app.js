@@ -13,4 +13,14 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/media_catalog'});
-}]);
+}])
+
+.filter('startFrom', function () {
+	return function (input, start) {
+		if (input) {
+			start = +start;
+			return input.slice(start);
+		}
+		return [];
+	};
+});

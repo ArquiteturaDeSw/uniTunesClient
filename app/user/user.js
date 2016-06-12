@@ -19,6 +19,8 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 	$scope.newUserForm = {}
 	$scope.usersList = []
 	$scope.usersFilter = {}
+	$scope.limitPagination = 2
+	$scope.currentPage = 0
 
 	$scope.submitNewUserForm = function(){
 		validateNewUserData($scope.newUserForm)
@@ -30,13 +32,24 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
 		UserService.listUsers()
 			.then(filterUsers)
 			.then(function(list){
-				console.log(JSON.stringify(list))
 				$scope.usersList = list
 			})
 	}
 
 	$scope.clearFilter = function(){
 		$scope.usersFilter = {}
+	}
+
+	$scope.nextPage = function() {
+		if($scope.currentPage + 1 <= ($scope.usersList.length / $scope.limitPagination)){
+			$scope.currentPage ++
+		}
+	}
+
+	$scope.previousPage = function() {
+		if($scope.currentPage){
+			$scope.currentPage --
+		}
 	}
 
 	var filterUsers = function(usersList){
@@ -115,6 +128,20 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
     			"status":"Inativo",
     			"email":"jose.silveira@gmail.com",
     			"id":"3"
+    		},
+    		{
+    			"name":"Tiago",
+    			"lastname":"Gomes",
+    			"status":"Inativo",
+    			"email":"tiago.gomes@gmail.com",
+    			"id":"4"
+    		},
+    		{
+    			"name":"Silvia",
+    			"lastname":"Lopes",
+    			"status":"Ativo",
+    			"email":"silvia.lopes@gmail.com",
+    			"id":"5"
     		}
     	]
     	return $q.resolve(list);
