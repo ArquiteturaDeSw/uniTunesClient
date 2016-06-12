@@ -5,17 +5,17 @@
     	<h2>Desativar conta de usuário</h2>
     	<div class="form-group">
 		  <label for="reason">Informe o motivo para desativar este usuário:</label>
-		  <textarea class="form-control" rows="5" id="reason"></textarea>
+		  <textarea class="form-control" rows="5" id="reason" required></textarea>
 		</div>
 
 		<div class="form-group">
 		  <label for="password">Informe a sua senha:</label>
-		  <input type="password" class="form-control" id="password"/>
+		  <input type="password" class="form-control" id="password" required />
 		</div>
     </form>
-    <div class="button-group">
-	    <button type="button" class="btn btn-default pull-right" ng-click="$close()">Cancelar</button>
-	    <button type="button" class="btn btn-default pull-right" ng-click="$close()">Confirmar</button>
+    <div class="button-group text-right">
+	    <button type="button" class="btn btn-default" ng-click="$close()">Cancelar</button>
+	    <button type="button" class="btn btn-success" ng-click="$close()">Confirmar</button>
 	</div>
   </div>
 </div>
