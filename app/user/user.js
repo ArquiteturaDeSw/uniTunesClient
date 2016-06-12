@@ -11,15 +11,40 @@ angular.module('uniTunesApp.User', ['ngRoute', 'pathgather.popeye'])
   .when('/usuario', {
       templateUrl: 'user/user-list.html',
       controller: 'UserCtrl'
+  })
+
+  .when('/usuario/:id', {
+      templateUrl: 'user/user.html',
+      controller: 'UserCtrl'
   });
 }])
 
 .controller('UserCtrl', function($scope, $q, $location, Popeye, UserService) {
 
 	$scope.newUserForm = {}
+
+	$scope.currentUser = {
+		"name":"Maria",
+		"lastname":"Silva",
+		"email":"maria.silva@gmail.com",
+		"credit":"39",
+		"products": [ {
+			"title":"Padrões de Projeto",
+			"price":"20",
+			"category":"Livro",
+			"soldAmount":"5"
+		},
+		{
+			"title":"Bad smells",
+			"price":"5",
+			"category":"Vídeo",
+			"soldAmount":"18"
+		}]
+	}
+
 	$scope.usersList = []
 	$scope.usersFilter = {}
-	$scope.limitPagination = 2
+	$scope.limitPagination = 20
 	$scope.currentPage = 0
 
 	$scope.submitNewUserForm = function(){
