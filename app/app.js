@@ -6,6 +6,7 @@ angular.module('uniTunesApp', [
   'pathgather.popeye',
   'uniTunesApp.MediaCatalog',
   'uniTunesApp.User',
+  'uniTunesApp.Login',
   'myApp.view2',
   'myApp.version'
 ]).
