@@ -13,15 +13,15 @@ angular.module('uniTunesApp', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $rootScope.$on('$locationChangeStart', function (event) {
+ // $rootScope.$on('$locationChangeStart', function (event) {
     //If login data not available, make sure we request for it
-    if(!next.authenticated) {
-        return;
-    }
+  //  if(!next.authenticated) {
+    //    return;
+    //}
 
-    $location.path('/login');
+    //$location.path('/login');
 
-});
+//});
 
   $routeProvider.otherwise({redirectTo: '/media_catalog'});
 }])
