@@ -5,7 +5,8 @@ angular.module('uniTunesApp.MediaCatalog', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/media_catalog', {
     templateUrl: 'media-catalog/media-catalog.html',
-    controller: 'MediaCatalogCtrl'
+    controller: 'MediaCatalogCtrl',
+    authenticated: true
   });
 }])
 

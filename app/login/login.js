@@ -5,7 +5,8 @@ angular.module('uniTunesApp.Login', ['ngRoute', 'pathgather.popeye'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'login/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+    authenticated: false
   })
 }])
 
